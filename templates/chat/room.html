@@ -10,9 +10,9 @@
   </p>
   <p>
     <label for="handle">Your name:</label>
-    <input ng-model="chatform.handle" id="handle" type="text" placeholder="handle">
+    <input ng-model="chatform.handle" type="text" placeholder="handle">
   </p>
-  <form ng-submit="chatform.submit()" id="chatform">
+  <form ng-submit="chatform.submitMessage()">
     <table id="chat">
       <tbody>
           <tr ng-repeat="message in chatform.messages">
@@ -25,8 +25,8 @@
       <tr>
         <td>Say something:</td>
         <td colspan=2>
-          <input ng-model="chatform.message" id="message" type="text" placeholder="message">
-          <button type="submit" id="go">Say it</button>
+          <input ng-model="chatform.message" type="text" placeholder="message">
+          <button type="submit">Say it</button>
         </td>
       </tfoot>
     </table>
