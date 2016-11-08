@@ -15,13 +15,11 @@
   <form ng-submit="chatform.submit()" id="chatform">
     <table id="chat">
       <tbody>
-        {% for message in messages %}
-          <tr>
+          <tr ng-repeat="message in chatform.messages">
             <td>{{ message.formatted_timestamp }}</td>
             <td>{{ message.handle }}</td>
             <td>{{ message.message }}</td>
           </tr> 
-        {% endfor %}
       </tbody>
       <tfoot>
       <tr>
