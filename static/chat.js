@@ -9,7 +9,7 @@ angular.module('chatApp', []).controller('ChatController', function() {
         chatform.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
     };
 
-    chatform.submit = function() {
+    chatform.submitMessage = function() {
         var message = {
             handle: chatform.handle,
             message: chatform.message,
