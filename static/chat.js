@@ -1,5 +1,6 @@
-$(function() {
+angular.module('chatApp', []).controller('ChatController', function() {
     // When we're using HTTPS, use WSS too.
+    var chatform = this;
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     var chatsock = new ReconnectingWebSocket(ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname);
     
@@ -21,13 +22,14 @@ $(function() {
         chat.append(ele)
     };
 
-    $("#chatform").on("submit", function(event) {
+    chatform.submit = function() {
         var message = {
-            handle: $('#handle').val(),
-            message: $('#message').val(),
+            handle: chatform.handle,
+            message: chatform.message,
         }
         chatsock.send(JSON.stringify(message));
-        $("#message").val('').focus();
+        chatform.message = '';
+        chatform.message.focus();
         return false;
     });
 });
