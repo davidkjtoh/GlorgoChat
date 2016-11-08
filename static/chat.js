@@ -6,7 +6,7 @@ angular.module('chatApp', []).controller('ChatController', function() {
     
     chatsock.onmessage = function(message) {
         var data = JSON.parse(message.data);
-        chatform.messages.push({text:data.timestamp, text:data.handle, text:data.message});
+        chatform.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
     };
 
     chatform.submit = function() {
