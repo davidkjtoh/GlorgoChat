@@ -16,7 +16,6 @@ angular.module('chatApp', []).controller('ChatController', function() {
         }
         chatsock.send(JSON.stringify(message));
         chatform.message = '';
-        chatform.message.focus();
         return false;
     });
 });
