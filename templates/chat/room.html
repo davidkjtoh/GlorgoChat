@@ -2,6 +2,7 @@
 
 {% block content %}
   {% load staticfiles %}
+  <div ng-controller="ChatController as chatform">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
     Anyone with this URL can join the room and chat: 
@@ -9,9 +10,9 @@
   </p>
   <p>
     <label for="handle">Your name:</label>
-    <input id="handle" type="text" placeholder="handle">
+    <input ng-model="chatform.handle" id="handle" type="text" placeholder="handle">
   </p>
-  <form id="chatform">
+  <form ng-submit="chatform.submit()" id="chatform">
     <table id="chat">
       <tbody>
         {% for message in messages %}
@@ -26,12 +27,13 @@
       <tr>
         <td>Say something:</td>
         <td colspan=2>
-          <input id="message" type="text" placeholder="message">
+          <input ng-model="chatform.message" id="message" type="text" placeholder="message">
           <button type="submit" id="go">Say it</button>
         </td>
       </tfoot>
     </table>
   </form>
+  </div>
 {% endblock content %}
 
 {% block afterbody %}
