@@ -2,7 +2,8 @@
 
 {% block content %}
   {% load staticfiles %}
-  <div ng-controller="ChatController as chatform">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <div ng-app="chatApp" ng-controller="ChatController as chatform">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
     Anyone with this URL can join the room and chat: 
