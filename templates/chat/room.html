@@ -35,7 +35,7 @@
     <p>{{ws_scheme}}</p>
   </form>
   </div>
-<script>
+<script type="text/javascript">
 angular.module('chatApp', []).controller('ChatController', function($scope) {
     // When we're using HTTPS, use WSS too.
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
