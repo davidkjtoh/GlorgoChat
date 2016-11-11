@@ -41,4 +41,26 @@
   <script type="text/javascript" src='{% static "jquery-1.12.1.min.js" %}'></script>
   <script type="text/javascript" src='{% static "reconnecting-websocket.min.js" %}'></script>
   <script type="text/javascript" src='{{ STATIC_URL }}chat.js'></script>
+  <script>
+angular.module('chatApp', []).controller('ChatController', function($scope) {
+    // When we're using HTTPS, use WSS too.
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var chatsock = new WebSocket(ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname);
+    
+    chatsock.onmessage = function(message) {
+        var data = JSON.parse(message.data);
+        $scope.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
+    };
+
+    $scope.submitMessage = function() {
+        var message = {
+            handle: $scope.handle,
+            message: $scope.message,
+        }
+        chatsock.send(JSON.stringify(message));
+        $scope.message = '';
+        return false;
+    };
+});
+</script>
 {% endblock afterbody %}
