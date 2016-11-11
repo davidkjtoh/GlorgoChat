@@ -35,13 +35,7 @@
     <p>{{ws_scheme}}</p>
   </form>
   </div>
-{% endblock content %}
-
-{% block afterbody %}
-  <script type="text/javascript" src='{% static "jquery-1.12.1.min.js" %}'></script>
-  <script type="text/javascript" src='{% static "reconnecting-websocket.min.js" %}'></script>
-  <script type="text/javascript" src='{{ STATIC_URL }}chat.js'></script>
-  <script>
+<script>
 angular.module('chatApp', []).controller('ChatController', function($scope) {
     // When we're using HTTPS, use WSS too.
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
@@ -63,4 +57,11 @@ angular.module('chatApp', []).controller('ChatController', function($scope) {
     };
 });
 </script>
+{% endblock content %}
+
+{% block afterbody %}
+  <script type="text/javascript" src='{% static "jquery-1.12.1.min.js" %}'></script>
+  <script type="text/javascript" src='{% static "reconnecting-websocket.min.js" %}'></script>
+  <script type="text/javascript" src='{{ STATIC_URL }}chat.js'></script>
+  
 {% endblock afterbody %}
