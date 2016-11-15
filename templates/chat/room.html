@@ -13,6 +13,7 @@
     <label for="handle">Your name:</label>
     <input ng-model="handle" type="text" placeholder="handle">
   </p>
+  {% verbatim %}
   <form ng-submit="submitMessage()">
     <table>
       <tbody>
@@ -34,6 +35,7 @@
     <p>Handle: {{ handle }} | Message: {{ message }}</p>
     <p>{{ws_scheme}}</p>
   </form>
+  {% endverbatim %}
   </div>
 <script type="text/javascript">
 angular.module('chatApp', []).controller('ChatController', function($scope) {
