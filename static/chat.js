@@ -5,6 +5,7 @@ angular.module('chatApp', []).controller('ChatController', function($scope) {
     
     chatsock.onmessage = function(message) {
         var data = JSON.parse(message.data);
+        $scope.message = 'RECEIVED';
         $scope.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
     };
 
