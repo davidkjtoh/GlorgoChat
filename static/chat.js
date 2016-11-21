@@ -4,7 +4,7 @@ app.controller('ChatController', function($scope, socket) {
     // When we're using HTTPS, use WSS too.
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     var socket_url = ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname;
-    var web_socket = socket.createSocket(url);
+    var web_socket = socket.createSocket(socket_url);
     
     web_socket.onmessage(function(message) {
         var data = JSON.parse(message.data);
