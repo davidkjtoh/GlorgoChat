@@ -23,9 +23,9 @@ app.controller('ChatController', function($scope, socket) {
 });
 
 app.factory('socket', [function() {
-    var stack = [];
-    var onmessageDefer;
     createSocket: function(url) {
+        var stack = [];
+        var onmessageDefer;
         socket = {
             ws: new WebSocket(url),
             send: function(data) {
@@ -55,5 +55,8 @@ app.factory('socket', [function() {
             }
         };
         return socket;
+    };
+    return {
+        createSocket: createSocket;
     };
 }]);
