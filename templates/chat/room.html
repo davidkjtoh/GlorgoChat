@@ -4,6 +4,17 @@
   {% load staticfiles %}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script>django_messages = {{ messages }};</script>
+   <table id="chat">
+        <tbody>
+          {% for message in messages %}
+            <tr>
+              <td>{{ message.formatted_timestamp }}</td>
+              <td>{{ message.handle }}</td>
+              <td>{{ message.message }}</td>
+            </tr> 
+          {% endfor %}
+        </tbody>
+  </table>
   <div ng-app="chatApp" ng-controller="ChatController">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
@@ -19,7 +30,7 @@
     <table>
       <tbody>
           <tr ng-repeat="message in messages">
-            <td>{{ message.timestamp }}</td>
+            <td>{{ message.formatted_timestamp }}</td>
             <td>{{ message.handle }}</td>
             <td>{{ message.message }}</td>
           </tr> 
