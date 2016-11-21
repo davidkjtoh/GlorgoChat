@@ -15,7 +15,7 @@
           {% endfor %}
         </tbody>
   </table>
-  <div ng-app="chatApp" ng-controller="ChatController">
+  <div ng-app="chatApp" ng-controller="ChatController" ng-init="messages={{ messages }}">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
     Anyone with this URL can join the room and chat: 
