@@ -9,7 +9,7 @@ app.controller('ChatController', function($scope, socket) {
     
     web_socket.onmessage(function(message) {
         var data = JSON.parse(message.data);
-        $scope.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
+        $scope.messages.push({formatted_timestamp:data.timestamp, handle:data.handle, message:data.message});
     });
 
     $scope.submitMessage = function() {
