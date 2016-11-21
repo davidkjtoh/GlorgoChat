@@ -15,6 +15,7 @@
           {% endfor %}
         </tbody>
   </table>
+  <p>{{ messages }}</p>
   <div ng-app="chatApp" ng-controller="ChatController" ng-init="messages={{ messages|safe }}">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
