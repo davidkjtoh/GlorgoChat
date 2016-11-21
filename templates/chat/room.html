@@ -16,6 +16,7 @@
         </tbody>
   </table>
   <p>{{ messages }}</p>
+  <p>{{ django_messages }}</p>
   <div ng-app="chatApp" ng-controller="ChatController" ng-init="messages={{ messages|safe }}">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
@@ -27,7 +28,6 @@
     <input ng-model="handle" type="text" placeholder="handle">
   </p>
   {% verbatim %}
-  <p>{{ django_messages }}</p>
   <form ng-submit="submitMessage()">
     <table>
       <tbody>
