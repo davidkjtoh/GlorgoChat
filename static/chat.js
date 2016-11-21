@@ -2,6 +2,7 @@ var app = angular.module('chatApp', []);
 
 app.controller('ChatController', function($scope, socket) {
     // When we're using HTTPS, use WSS too.
+    $scope.messages = django_messages;
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     var socket_url = ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname;
     var web_socket = socket.createSocket(socket_url);
