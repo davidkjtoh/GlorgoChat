@@ -56,6 +56,6 @@ app.factory('socket', [function() {
                 }
             };
             return socket;
-        };
-    };
+        }
+    }
 }]);
