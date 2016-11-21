@@ -15,7 +15,7 @@
           {% endfor %}
         </tbody>
   </table>
-  <div ng-app="chatApp" ng-controller="ChatController" ng-init="messages={{ messages }}">
+  <div ng-app="chatApp" ng-controller="ChatController" ng-init="Messages={{ messages }}">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
     Anyone with this URL can join the room and chat: 
@@ -26,7 +26,7 @@
     <input ng-model="handle" type="text" placeholder="handle">
   </p>
   {% verbatim %}
-  <p>{{ messages }}</p>
+  <p>{{ Messages }}</p>
   <form ng-submit="submitMessage()">
     <table>
       <tbody>
