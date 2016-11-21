@@ -1,15 +1,14 @@
 var app = angular.module('chatApp', []);
 
-app.controller('ChatController', function($scope, websocketService) {
+app.controller('ChatController', function($scope, socket) {
     // When we're using HTTPS, use WSS too.
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     var socket_url = ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname;
+    socket.ws = new WebSocket(socket_url);
     
-    var ws = websocketService.start(socket_url, function (message) {
+    socket.onmessage(function(message) {
         var data = JSON.parse(message.data);
-        $scope.$apply(function () {
-            $scope.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
-        });
+        $scope.messages.push({timestamp:data.timestamp, handle:data.handle, message:data.message});
     });
 
     $scope.submitMessage = function() {
@@ -17,26 +16,42 @@ app.controller('ChatController', function($scope, websocketService) {
             handle: $scope.handle,
             message: $scope.message,
         }
-        ws.send(JSON.stringify(message));
+        socket.send(message);
         $scope.message = '';
         return false;
     };
 });
 
-app.factory('websocketService', function () {
-    return {
-        start: function (url, callback) {
-            var websocket = new WebSocket(url);
-            websocket.onopen = function () {
-            };
-            websocket.onclose = function () {
-            };
-            websocket.onmessage = function (evt) {
-                callback(evt);
-            };
-            websocket.send = function (message) {
-                websocket.send(message);
+app.factory('socket', [function() {
+    var stack = [];
+    var onmessageDefer;
+    var socket = {
+        ws: new WebSocket(websocket_url),
+        send: function(data) {
+            data = JSON.stringify(data);
+            if (socket.ws.readyState == 1) {
+                socket.ws.send(data);
+            } else {
+                stack.push(data);
+            }
+        },
+        onmessage: function(callback) {
+            if (socket.ws.readyState == 1) {
+                socket.ws.onmessage = callback;
+            } else {
+                onmessageDefer = callback;
             }
         }
-    }
-});
+    };
+    socket.ws.onopen = function(event) {
+        for (i in stack) {
+            socket.ws.send(stack[i]);
+        }
+        stack = [];
+        if (onmessageDefer) {
+            socket.ws.onmessage = onmessageDefer;
+            onmessageDefer = null;
+        }
+    };
+    return socket;
+}]);
