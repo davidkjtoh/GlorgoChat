@@ -25,8 +25,8 @@ app.controller('ChatController', function($scope, socket) {
 app.factory('socket', [function() {
     var stack = [];
     var onmessageDefer;
-    var socket = {
-        ws: new WebSocket(websocket_url),
+    socket = {
+        ws: new WebSocket(),
         send: function(data) {
             data = JSON.stringify(data);
             if (socket.ws.readyState == 1) {
