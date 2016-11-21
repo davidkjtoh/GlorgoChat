@@ -3,6 +3,7 @@
 {% block content %}
   {% load staticfiles %}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script>django_messages = {{ messages }};</script>
   <div ng-app="chatApp" ng-controller="ChatController">
   <h1>{{ room.label }}</h1>
   <p class="quiet">
