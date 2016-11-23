@@ -27,8 +27,6 @@
     <input ng-model="handle" type="text" placeholder="handle">
   </p>
   {% verbatim %}
-  <p>Django_messages: {{ django_messages }}</p>
-  <p>messages: {{ messages }}</p>
   <form ng-submit="submitMessage()">
     <table>
       <tbody>
@@ -48,6 +46,8 @@
       </tfoot>
     </table>
     <p>Handle: {{ handle }} | Message: {{ message }}</p>
+    <p>Django_messages: {{ django_messages }}</p>
+    <p>messages: {{ messages }}</p>
   </form>
   </div>
   {% endverbatim %}
