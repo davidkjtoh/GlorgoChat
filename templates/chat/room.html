@@ -3,7 +3,7 @@
 {% block content %}
   {% load staticfiles %}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <script type="text/javascript">$scope.django_messages = {{ messages }};</script>
+  <script type="text/javascript">var django_messages = {{ messages }};</script>
    <table id="chat">
         <tbody>
           {% for message in messages %}
