@@ -26,7 +26,7 @@
     <label for="handle">Your name:</label>
     <input ng-model="handle" type="text" placeholder="handle">
   </p>
-  {% verbatim %}
+  {% angularjs %}
   <p>Django_messages: {{ django_messages }}</p>
   <p>messages: {{ messages }}</p>
   <form ng-submit="submitMessage()">
@@ -50,7 +50,7 @@
     <p>Handle: {{ handle }} | Message: {{ message }}</p>
   </form>
   </div>
-  {% endverbatim %}
+  {% endangularjs %}
 {% endblock content %}
 
 {% block afterbody %}
