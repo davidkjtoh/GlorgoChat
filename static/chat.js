@@ -5,7 +5,13 @@ app.controller('ChatController', function($scope, socket) {
     //$scope.messages = django_messages;
     var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     var socket_url = ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname;
+    var ws = new ReconnectingWebSocket(socket_url);
     var web_socket = socket.createSocket(socket_url);
+    
+    ws.onmessage = function(message) {
+        var data = JSON.parse(message.data);
+        $scope.messages.push({formatted_timestamp:data.timestamp, handle:data.handle, message:data.message});
+    };
     
     web_socket.onmessage(function(message) {
         var data = JSON.parse(message.data);
@@ -17,7 +23,8 @@ app.controller('ChatController', function($scope, socket) {
             handle: $scope.handle,
             message: $scope.message,
         }
-        web_socket.send(message);
+        ws.send(JSON.stringify(message));
+        //web_socket.send(message);
         $scope.message = '';
         return false;
     };
